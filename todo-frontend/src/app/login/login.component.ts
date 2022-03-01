@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'in28minutes'
+  username = 'billbenon'
   password = ''
   errorMessage = 'Invalid Credentials'
   invalidLogin = false
@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
 
   handleLogin() {
     // console.log(this.username);
-    //if(this.username==="in28minutes" && this.password === 'dummy') {
-    if(this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
+    //if(this.username==="billbenon" && this.password === 'benon') {
+    if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
       //Redirect to Welcome Page
       this.router.navigate(['welcome', this.username])
       this.invalidLogin = false
@@ -39,34 +39,34 @@ export class LoginComponent implements OnInit {
 
   handleBasicAuthLogin() {
     // console.log(this.username);
-    //if(this.username==="in28minutes" && this.password === 'dummy') {
+    //if(this.username==="billbenon" && this.password === 'benon') {
     this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome', this.username])
-            this.invalidLogin = false      
-          },
-          error => {
-            console.log(error)
-            this.invalidLogin = true
-          }
-        )
+      .subscribe(
+        data => {
+          console.log(data)
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false
+        },
+        error => {
+          console.log(error)
+          this.invalidLogin = true
+        }
+      )
   }
 
   handleJWTAuthLogin() {
     this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome', this.username])
-            this.invalidLogin = false      
-          },
-          error => {
-            console.log(error)
-            this.invalidLogin = true
-          }
-        )
+      .subscribe(
+        data => {
+          console.log(data)
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false
+        },
+        error => {
+          console.log(error)
+          this.invalidLogin = true
+        }
+      )
   }
 
 }
